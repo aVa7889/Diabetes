@@ -9,8 +9,6 @@ from sklearn.pipeline import Pipeline
 #import statsmodels.api as sm
 import glob
 
-
-
 def load_data():
     # Get a list of all CSV files in a directory
     csv_files = glob.glob('data/*.csv')
