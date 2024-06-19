@@ -122,11 +122,11 @@ def Standard_Classification(X_train_standardscaled, X_test_standardscaled, y_tra
 
 def MinMax_Classification(X_train_MinMaxscaled, X_test_MinMaxscaled, y_train, y_test):
     MinMax_LogisticRegression(X_train_MinMaxscaled, X_test_MinMaxscaled, y_train, y_test)
+    KNeighborsClassifier_MinMax(X_train_MinMaxscaled, X_test_MinMaxscaled, y_train, y_test)
     KNN_MinMax_classification(X_train_MinMaxscaled, X_test_MinMaxscaled, y_train, y_test)
     MinMax_RandomForestClassifier(X_train_MinMaxscaled, X_test_MinMaxscaled, y_train, y_test)
     MinMax_Extra_Tree_Classifier(X_train_MinMaxscaled, X_test_MinMaxscaled, y_train, y_test)
-    KNN_MinMax_classification(X_train_MinMaxscaled, X_test_MinMaxscaled, y_train)
-                            
+    
 def KNN_Std_classification(X_train_standardscaled, X_test_standardscaled, y_train, y_test):
         train_scores = []
         test_scores = []
@@ -158,7 +158,7 @@ def KNN_MinMax_classification(X_train_MinMaxscaled, X_test_MinMaxscaled, y_train
             test_score = knn.score(X_test_MinMaxscaled, y_test)
             train_scores.append(train_score)
             test_scores.append(test_score)
-            print(f"k: {k}, Train/Test Score: {MinMax_train_score:.3f}/{MinMax_test_score:.3f}")
+            print(f"k: {k}, MinMax Train/Test Score: {train_score:.3f}/{test_score:.3f}")
     
         # Plot the results
         plt.plot(range(1, 20, 2), train_scores, marker='o', label="training scores")
@@ -183,9 +183,9 @@ def Standard_LogisticRegression(X_train_standardscaled, X_test_standardscaled, y
     return X_train_standardscaled, X_test_standardscaled, y_test, testing_predections
 
 def MinMax_LogisticRegression(X_train_MinMaxscaled, X_test_MinMaxscaled, y_train, y_test):
-    LogisticRegression_model = LogisticRegression()
-    MinMax_LogisticRegression = LogisticRegression.fit(X_train_MinMaxscaled, y_train)
-    MinMax_testing_predections = LogisticRegression.predict(X_test_MinMaxscaled)
+    MinMaxLogisticRegression_model = LogisticRegression()
+    MinMax_LogisticRegression = MinMaxLogisticRegression_model.fit(X_train_MinMaxscaled, y_train)
+    MinMax_testing_predections = MinMaxLogisticRegression_model.predict(X_test_MinMaxscaled)
     accuracy_score(y_test, MinMax_testing_predections)
 
     print(f"MinMax Training Data Score: {MinMax_LogisticRegression.score(X_train_MinMaxscaled, y_train)}")
